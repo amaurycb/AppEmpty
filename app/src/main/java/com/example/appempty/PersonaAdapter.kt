@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import com.example.appempty.Personas
-import com.example.appempty.R
 import kotlinx.android.synthetic.main.details_personas.view.*
 
 
@@ -16,7 +14,7 @@ class PersonaAdapter(private val mContext: Context, private val listaPersonas: L
 
         val persona = listaPersonas[position]
 
-        layout.nombre.text = persona.nombre
+        layout.nombre_persona.text = persona.nombre
         layout.username.text = persona.username
 
 

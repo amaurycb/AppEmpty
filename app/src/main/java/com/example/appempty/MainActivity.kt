@@ -1,5 +1,6 @@
 package com.example.appempty
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -18,6 +19,11 @@ class MainActivity : AppCompatActivity() {
     val adapter = PersonaAdapter(this, listaPersonas)
 
     lista.adapter = adapter
+    lista.setOnItemClickListener { parent, view, position, id ->
+        val intent = Intent(this, PersonaActivity::class.java)
+        intent.putExtra("persona", listaPersonas[position])
+        startActivity(intent)
+    }
     }
 }
 
