@@ -18,5 +18,15 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/fragment_lista"
 />
+
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="391dp"
+        android:layout_height="770dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="36dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

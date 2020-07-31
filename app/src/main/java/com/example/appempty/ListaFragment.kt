@@ -5,11 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import android.widget.TextView
 
 
-import kotlinx.android.synthetic.main.activity_main.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,17 +38,21 @@ class ListaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_fragments_details, container, false)
+        return inflater.inflate(R.layout.fragment_lista, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<TextView>(R.id.text1).setOnClickListener {
-            findNavController().navigate(R.id.action_ListaFragment_to_fragments_details) //aca
+            findNavController().navigate(R.id.action_listaFragment_to_SecondFragment)
+
+
 
 
         }
     }
+
 
     companion object {
         /**
