@@ -45,7 +45,7 @@ class ListaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<TextView>(R.id.text1).setOnClickListener {
-            findNavController().navigate(R.id.action_ListaFragment_to_fragments_details)
+            findNavController().navigate(R.id.action_ListaFragment_to_fragments_details) //aca
 
 
         }
