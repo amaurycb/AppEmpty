@@ -7,6 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_second.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,6 +35,19 @@ class SecondFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://randomuser.me/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val usercall = retrofit.create(RandomUserService::class.java).getUserList(1).execute().body()
+        fullname.textColors
+
+
+
+
+
+
     }
 
     override fun onCreateView(
@@ -42,8 +61,11 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<TextView>(R.id.text3).setOnClickListener {
+        view.findViewById<TextView>(R.id.fullname).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_listaFragment)
+
+
+
 
 
 
