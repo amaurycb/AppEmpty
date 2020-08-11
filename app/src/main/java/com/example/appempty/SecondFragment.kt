@@ -14,6 +14,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+//
+
+
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -40,8 +44,24 @@ class SecondFragment : Fragment() {
             .baseUrl("https://randomuser.me/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val usercall = retrofit.create(RandomUserService::class.java).getUserList(1).execute().body()
-        fullname.textColors
+        val usercall = retrofit.create(RandomUserService::class.java).getUserList(1)
+
+        usercall.enqueue(object : Callback<RandomUserResponse> {
+            override fun onFailure(call: Call<RandomUserResponse>, t: Throwable) {
+
+            }
+
+            override fun onResponse(call: Call<RandomUserResponse>, response: Response<RandomUserResponse>) {
+                val results = response.body() ?: throw Throwable("error1")
+ //               results.User().Name().first
+ //               results.User().Name().last
+ //               results.User().email
+ //               results.User().phone
+  //                results.User().Location().city
+  //              results.User().picture
+            }
+        })
+
 
 
 
