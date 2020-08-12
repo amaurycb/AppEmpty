@@ -36,7 +36,8 @@ class SecondFragment : Fragment() {
     @GlideModule
     class AppGlideModule : AppGlideModule()
 
-    // TODO: Rename and change types of parameters
+
+
     private var param1: String? = null
     private var param2: String? = null
 
@@ -113,7 +114,7 @@ class SecondFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment SecondFragment.
          */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             SecondFragment().apply {
