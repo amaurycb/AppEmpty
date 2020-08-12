@@ -3,7 +3,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello William</string>
     <string name="textview2">Hello Amaury</string>
-    <string name="text3">Nombre: William</string>
-    <string name="text4">Aca listado de otras propiedades</string>
+    <string name="fullname">Nombre: William</string>
+    <string name="city">Aca listado de otras propiedades</string>
+    <string name="state">state</string>
+    <string name="country">country</string>
+    <string name="email">email</string>
+    <string name="username">username</string>
+    <string name="phone">phone</string>
+    <string name="imageavatar">imageavatar</string>
 
 </resources>
