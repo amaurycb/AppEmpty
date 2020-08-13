@@ -1,27 +1,23 @@
 package com.example.appempty
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
 import kotlinx.android.synthetic.main.fragment_second.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.bumptech.glide.annotation.GlideModule
-import com.bumptech.glide.module.AppGlideModule
-
-//
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
-
-// TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -34,8 +30,8 @@ private const val ARG_PARAM2 = "param2"
 class SecondFragment : Fragment() {
 
     @GlideModule
-    class AppGlideModule : AppGlideModule()
-
+    class MyAppGlideModule : AppGlideModule() { // leave empty for now
+    }
 
 
     private var param1: String? = null
@@ -60,15 +56,18 @@ class SecondFragment : Fragment() {
             }
 
             override fun onResponse(call: Call<RandomUserResponse>, response: Response<RandomUserResponse>) {
-                val results = response.body() ?: throw Throwable("error1")
+                    response.isSuccessful ?: throw Throwable("error1")
 
-                    fullname.setText(results.User().fullName())
-                    username.setText(results.User().Login().username)
-                    state.setText(results.User().Location().state)
-                    email.setText(results.User().email)
-                    phone.setText(results.User().phone)
-                    GlideApp.with(context)
-                    .load(results.User().picture)
+                    fullname.setText(response.body()!!.results[0].name.first)
+                    username.setText(response.body()!!.results[0].login.username)
+                    state.setText(response.body()!!.results[0].location.state)
+                    email.setText(response.body()!!.results[0].email)
+                    phone.setText(response.body()!!.results[0].phone)
+                    country.setText(response.body()!!.results[0].location.country)
+                    city.setText(response.body()!!.results[0].location.city)
+
+                    Glide.with(this@SecondFragment)
+                    .load(response.body()!!.results[0].picture.large)
                     .into(imageView)
 
             }
