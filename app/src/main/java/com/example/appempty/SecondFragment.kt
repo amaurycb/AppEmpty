@@ -66,6 +66,7 @@ class SecondFragment : Fragment() {
                     country.setText(response.body()!!.results[0].location.country)
                     city.setText(response.body()!!.results[0].location.city)
 
+
                     Glide.with(this@SecondFragment)
                     .load(response.body()!!.results[0].picture.large)
                     .into(imageView)
