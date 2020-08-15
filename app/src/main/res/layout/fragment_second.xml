@@ -140,11 +140,13 @@
         android:id="@+id/city_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="216dp"
+        android:layout_marginLeft="216dp"
         android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-black"
         android:text="City"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:layout_editor_absoluteX="271dp" />
+        app:layout_constraintStart_toEndOf="@+id/email_label"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/state_label"
