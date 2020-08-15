@@ -58,17 +58,19 @@ class SecondFragment : Fragment() {
             override fun onResponse(call: Call<RandomUserResponse>, response: Response<RandomUserResponse>) {
                     response.isSuccessful ?: throw Throwable("error1")
 
-                    fullname.setText(response.body()!!.results[0].name.first)
-                    username.setText(response.body()!!.results[0].login.username)
-                    state.setText(response.body()!!.results[0].location.state)
-                    email.setText(response.body()!!.results[0].email)
-                    phone.setText(response.body()!!.results[0].phone)
-                    country.setText(response.body()!!.results[0].location.country)
-                    city.setText(response.body()!!.results[0].location.city)
+                    val usuario=response.body()!!.results[0]
+
+                    fullname.setText(usuario.name.first)
+                    username.setText(usuario.login.username)
+                    state.setText(usuario.location.state)
+                    email.setText(usuario.email)
+                    phone.setText(usuario.phone)
+                    country.setText(usuario.location.country)
+                    city.setText(usuario.location.city)
 
 
                     Glide.with(this@SecondFragment)
-                    .load(response.body()!!.results[0].picture.large)
+                    .load(usuario.picture.large)
                     .into(imageView)
 
             }

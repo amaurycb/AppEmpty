@@ -36,39 +36,33 @@
 
     <TextView
         android:id="@+id/city"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
-        android:layout_marginLeft="280dp"
         android:layout_marginTop="5dp"
         android:text="@string/city"
         android:textColor='@color/gray'
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_label" />
+        app:layout_constraintTop_toBottomOf="@+id/city_label"
+        tools:layout_editor_absoluteX="272dp" />
 
     <TextView
         android:id="@+id/state"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
-        android:layout_marginLeft="280dp"
         android:layout_marginTop="5dp"
         android:text="@string/state"
         android:textColor='@color/gray'
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/state_label" />
+        app:layout_constraintTop_toBottomOf="@+id/state_label"
+        tools:layout_editor_absoluteX="272dp" />
 
     <TextView
         android:id="@+id/country"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
-        android:layout_marginLeft="280dp"
         android:layout_marginTop="5dp"
         android:text="@string/country"
         android:textColor='@color/gray'
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/country_label" />
+        app:layout_constraintTop_toBottomOf="@+id/country_label"
+        tools:layout_editor_absoluteX="275dp" />
 
     <TextView
         android:id="@+id/email"
@@ -144,38 +138,40 @@
 
     <TextView
         android:id="@+id/city_label"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
-        android:layout_marginLeft="280dp"
         android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-black"
         android:text="City"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:layout_editor_absoluteX="271dp" />
 
     <TextView
         android:id="@+id/state_label"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
-        android:layout_marginLeft="280dp"
         android:layout_marginTop="15dp"
         android:fontFamily="sans-serif-black"
         android:text="State"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city" />
+        app:layout_constraintTop_toBottomOf="@+id/city"
+        tools:layout_editor_absoluteX="272dp" />
 
     <TextView
         android:id="@+id/country_label"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
-        android:layout_marginLeft="280dp"
         android:layout_marginTop="15dp"
         android:fontFamily="sans-serif-black"
         android:text="Country"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/state" />
+        app:layout_constraintTop_toBottomOf="@+id/state"
+        tools:layout_editor_absoluteX="271dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left"
+        app:constraint_referenced_ids="country,state,city,country_label,city_label,state_label"
+        tools:layout_editor_absoluteX="411dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
