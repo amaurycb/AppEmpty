@@ -7,15 +7,14 @@
     android:background="#FFFFFF"
     tools:context=".SecondFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="289dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/imageavatar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="2:1.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/vinagre" />
@@ -24,53 +23,25 @@
         android:id="@+id/fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="310dp"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginEnd="@dimen/screen_margin"
+        android:layout_marginBottom="@dimen/screen_margin"
         android:fontFamily="sans-serif-black"
+        android:background="#33000000"
+        android:padding="8dp"
         android:text="@string/fullname"
         android:textColor='@color/white'
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/city"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/city"
-        android:textColor='@color/gray'
-        app:layout_constraintTop_toBottomOf="@+id/city_label"
-        tools:layout_editor_absoluteX="272dp" />
-
-    <TextView
-        android:id="@+id/state"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/state"
-        android:textColor='@color/gray'
-        app:layout_constraintTop_toBottomOf="@+id/state_label"
-        tools:layout_editor_absoluteX="272dp" />
-
-    <TextView
-        android:id="@+id/country"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/country"
-        android:textColor='@color/gray'
-        app:layout_constraintTop_toBottomOf="@+id/country_label"
-        tools:layout_editor_absoluteX="275dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginLeft="@dimen/screen_margin"
+        android:layout_marginTop="@dimen/text_edit_top_margin"
         android:text="@string/email"
         android:textColor='@color/gray'
         app:layout_constraintStart_toStartOf="parent"
@@ -80,9 +51,9 @@
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginLeft="@dimen/screen_margin"
+        android:layout_marginTop="@dimen/text_edit_top_margin"
         android:text="@string/username"
         android:textColor='@color/gray'
         app:layout_constraintStart_toStartOf="parent"
@@ -92,9 +63,9 @@
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginLeft="@dimen/screen_margin"
+        android:layout_marginTop="@dimen/text_edit_top_margin"
         android:text="@string/phone"
         android:textColor='@color/gray'
         app:layout_constraintStart_toStartOf="parent"
@@ -104,11 +75,11 @@
         android:id="@+id/email_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginLeft="@dimen/screen_margin"
+        android:layout_marginTop="@dimen/screen_margin"
         android:fontFamily="sans-serif-black"
-        android:text="Email"
+        android:text="@string/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -116,11 +87,11 @@
         android:id="@+id/username_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginLeft="@dimen/screen_margin"
+        android:layout_marginTop="@dimen/label_margin_top"
         android:fontFamily="sans-serif-black"
-        android:text="Username"
+        android:text="@string/username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -128,11 +99,11 @@
         android:id="@+id/phone_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginLeft="@dimen/screen_margin"
+        android:layout_marginTop="@dimen/label_margin_top"
         android:fontFamily="sans-serif-black"
-        android:text="Phone"
+        android:text="@string/phone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
@@ -140,40 +111,67 @@
         android:id="@+id/city_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="216dp"
-        android:layout_marginLeft="216dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/screen_margin"
         android:fontFamily="sans-serif-black"
-        android:text="City"
-        app:layout_constraintStart_toEndOf="@+id/email_label"
+        android:text="@string/city"
+        app:layout_constraintStart_toStartOf="@+id/barrier3"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_edit_top_margin"
+        android:text="@string/city"
+        android:textColor='@color/gray'
+        app:layout_constraintTop_toBottomOf="@+id/city_label"
+        app:layout_constraintStart_toStartOf="@+id/barrier3" />
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_edit_top_margin"
+        android:text="@string/state"
+        android:textColor='@color/gray'
+        app:layout_constraintTop_toBottomOf="@+id/state_label"
+        app:layout_constraintStart_toStartOf="@+id/barrier3" />
+
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_edit_top_margin"
+        android:text="@string/country"
+        android:textColor='@color/gray'
+        app:layout_constraintTop_toBottomOf="@+id/country_label"
+        app:layout_constraintStart_toStartOf="@+id/barrier3" />
 
     <TextView
         android:id="@+id/state_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/label_margin_top"
         android:fontFamily="sans-serif-black"
-        android:text="State"
+        android:text="@string/state"
         app:layout_constraintTop_toBottomOf="@+id/city"
-        tools:layout_editor_absoluteX="272dp" />
+        app:layout_constraintStart_toStartOf="@+id/barrier3" />
 
     <TextView
         android:id="@+id/country_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/label_margin_top"
         android:fontFamily="sans-serif-black"
-        android:text="Country"
+        android:text="@string/country"
         app:layout_constraintTop_toBottomOf="@+id/state"
-        tools:layout_editor_absoluteX="271dp" />
+        app:layout_constraintStart_toStartOf="@+id/barrier3"/>
 
-    <androidx.constraintlayout.widget.Barrier
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/barrier3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:barrierDirection="left"
-        app:constraint_referenced_ids="country,state,city,country_label,city_label,state_label"
-        tools:layout_editor_absoluteX="411dp" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

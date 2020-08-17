@@ -8,7 +8,7 @@ data class RandomUserResponse(
     @SerializedName("info")
     val info: IDNA.Info,
     @SerializedName("results")
-    val results: List<Result>
+    val results: List<UserProfile>
 )
 
 data class Coordinates(
@@ -81,19 +81,19 @@ data class Picture(
     val thumbnail: String
 )
 
-data class Result(
+data class UserProfile(
     @SerializedName("email")
-    val email: String,
+    val email: String = "",
     @SerializedName("location")
-    val location: Location,
+    val location: Location? = null,
     @SerializedName("login")
-    val login: Login,
+    val login: Login? = null,
     @SerializedName("name")
-    val name: Name,
+    val name: Name? = null,
     @SerializedName("phone")
-    val phone: String,
+    val phone: String = "",
     @SerializedName("picture")
-    val picture: Picture
+    val picture: Picture? = null
 )
 
 
