@@ -21,38 +21,25 @@ class SecondFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://randomuser.me/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val userCall = retrofit.create(RandomUserService::class.java).getUserList(1)
 
-        userCall.enqueue(object : Callback<RandomUserResponse> {
-            override fun onFailure(call: Call<RandomUserResponse>, t: Throwable) {}
+        val randomuser : UserViewModel by viewModels()
 
-            override fun onResponse(
-                call: Call<RandomUserResponse>,
-                response: Response<RandomUserResponse>
-            ) {
-                if (!response.isSuccessful) throw Throwable("error1")
+        val result: UserProfile = response.body()?.results?.firstOrNull() ?: UserProfile()
+        fullname.text = result.name?.first ?: "No First Name"
+        username.text = result.login?.username ?: "No User Name"
+        state.text = result.location?.state ?: "No State"
+        email.text = result.email
+        phone.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            PhoneNumberUtils.formatNumber(result.phone, Locale.US.isO3Country.toString())
+        } else result.phone // No format for old OS versions
+        country.text = result.location?.country ?: "No Country"
+        city.text = result.location?.city ?: "No City"
+        result.picture?.let { picture ->
+            Glide.with(this@SecondFragment)
+                .load(picture.large)
+                .into(imageView)
+        }
 
-                val result: UserProfile = response.body()?.results?.firstOrNull() ?: UserProfile()
-                fullname.text = result.name?.first ?: "No First Name"
-                username.text = result.login?.username ?: "No User Name"
-                state.text = result.location?.state ?: "No State"
-                email.text = result.email
-                phone.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    PhoneNumberUtils.formatNumber(result.phone, Locale.US.isO3Country.toString())
-                } else result.phone // No format for old OS versions
-                country.text = result.location?.country ?: "No Country"
-                city.text = result.location?.city ?: "No City"
-                result.picture?.let { picture ->
-                    Glide.with(this@SecondFragment)
-                        .load(picture.large)
-                        .into(imageView)
-                }
-            }
-        })
     }
 
     override fun onCreateView(
