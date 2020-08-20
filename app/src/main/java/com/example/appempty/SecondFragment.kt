@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.appempty.ViewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_second.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,9 +23,11 @@ class SecondFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val randomuser : UserViewModel by viewModels()
+        val randomuser : UserViewModel
 
-        val result: UserProfile = response.body()?.results?.firstOrNull() ?: UserProfile()
+        val  result= randomuser.loadUser()
+
+
         fullname.text = result.name?.first ?: "No First Name"
         username.text = result.login?.username ?: "No User Name"
         state.text = result.location?.state ?: "No State"
