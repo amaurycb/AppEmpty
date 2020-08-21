@@ -7,7 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.appempty.ViewModel.UserViewModel
@@ -21,22 +24,35 @@ class SecondFragment : Fragment() {
 
         val userViewModel: UserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-        userViewModel.loadUser { result ->
-            fullname.text = result.name?.first ?: "No First Name"
-            username.text = result.login?.username ?: "No User Name"
-            state.text = result.location?.state ?: "No State"
-            email.text = result.email
-            phone.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                PhoneNumberUtils.formatNumber(result.phone, Locale.US.isO3Country.toString())
-            } else result.phone // No format for old OS versions
-            country.text = result.location?.country ?: "No Country"
-            city.text = result.location?.city ?: "No City"
-            result.picture?.let { picture ->
-                Glide.with(this@SecondFragment)
-                    .load(picture.large)
-                    .into(imageView)
-            }
-        }
+
+
+       userViewModel.usuario.observe(this, androidx.lifecycle.Observer {
+            val result: UserProfile =it
+
+           fullname.text = result.name?.first ?: "No First Name"
+           username.text = result.login?.username ?: "No User Name"
+           state.text = result.location?.state ?: "No State"
+           email.text = result.email
+           phone.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+               PhoneNumberUtils.formatNumber(result.phone, Locale.US.isO3Country.toString())
+           } else result.phone // No format for old OS versions
+           country.text = result.location?.country ?: "No Country"
+           city.text = result.location?.city ?: "No City"
+           result.picture?.let { picture ->
+               Glide.with(this@SecondFragment)
+                   .load(picture.large)
+                   .into(imageView)
+           }
+
+
+        }  )
+
+
+
+
+
+
+
 
     }
 
@@ -56,3 +72,5 @@ class SecondFragment : Fragment() {
         }
     }
 }
+
+
