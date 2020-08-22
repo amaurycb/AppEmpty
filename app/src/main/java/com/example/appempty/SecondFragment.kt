@@ -26,9 +26,7 @@ class SecondFragment : Fragment() {
 
 
 
-       userViewModel.usuario.observe(this, androidx.lifecycle.Observer {
-            val result: UserProfile =it
-
+       userViewModel.usuario.observe(this, androidx.lifecycle.Observer { result ->
            fullname.text = result.name?.first ?: "No First Name"
            username.text = result.login?.username ?: "No User Name"
            state.text = result.location?.state ?: "No State"
