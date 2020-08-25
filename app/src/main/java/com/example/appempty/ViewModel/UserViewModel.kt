@@ -16,8 +16,11 @@ class UserViewModel : ViewModel() {
 
  //  val userresult = MutableLiveData<List<UserProfile>>()
         val usuario =MutableLiveData<UserProfile>()
+    init {
+        loadUser()
+    }
 
-    fun loadUser(displayUserInfo: (UserProfile) -> Unit) {
+    fun loadUser() {
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://randomuser.me/")
@@ -36,8 +39,6 @@ class UserViewModel : ViewModel() {
 
                 val result: UserProfile = response.body()?.results?.firstOrNull() ?: UserProfile()
                 usuario.value = result
-
-                displayUserInfo(result)
             }
         })
     }
