@@ -45,13 +45,6 @@ class SecondFragment : Fragment() {
 
         }  )
 
-
-
-
-
-
-
-
     }
 
     override fun onCreateView(
