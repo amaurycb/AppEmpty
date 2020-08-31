@@ -11,5 +11,6 @@
     <string name="username">Username</string>
     <string name="phone">Phone</string>
     <string name="imageavatar">imageavatar</string>
+    <string name="first_user">Nombre</string>
 
 </resources>
