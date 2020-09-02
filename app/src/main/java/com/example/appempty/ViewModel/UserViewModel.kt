@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class UserViewModel : ViewModel() {
 
  //  val userresult = MutableLiveData<List<UserProfile>>()
-        val usuario =MutableLiveData<UserProfile>()
+        val usuario = MutableLiveData<List<UserProfile>>()
     init {
         loadUser()
     }
@@ -38,7 +38,7 @@ class UserViewModel : ViewModel() {
                 if (!response.isSuccessful) throw Throwable("error1")
 
                 val result: UserProfile = response.body()?.results?.firstOrNull() ?: UserProfile()
-                usuario.value = result
+                usuario.value = MutableList(100) { result }
             }
         })
     }
