@@ -5,42 +5,40 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import android.widget.TextView
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
+import com.example.appempty.ViewModel.UserViewModel
+import kotlinx.android.synthetic.main.fragment_lista.*
 
-
-
-
-
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ListaFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ListaFragment : Fragment() {
+    lateinit var userViewModel: UserViewModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_lista, container, false)
+        val view = inflater.inflate(R.layout.fragment_lista, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userViewModel.usuario.observe(this@ListaFragment as LifecycleOwner, androidx.lifecycle.Observer {
+            val itemAdapter = ItemAdapter(
+                myDataset = it ?: emptyList()
+            ) { userProfile ->
+                NavHostFragment.findNavController(this)
+                    .navigate(R.id.action_listaFragment_to_SecondFragment)
+            }
+            rvLista_usuarios.adapter = itemAdapter
+        })
 
-        view.findViewById<TextView>(R.id.text1).setOnClickListener {
-            findNavController().navigate(R.id.action_listaFragment_to_SecondFragment)
-
-
-
-
-        }
     }
-
-
-
 }
