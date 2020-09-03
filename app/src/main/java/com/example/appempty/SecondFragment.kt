@@ -7,52 +7,51 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.appempty.ViewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_second.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class SecondFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://randomuser.me/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val userCall = retrofit.create(RandomUserService::class.java).getUserList(1)
 
-        userCall.enqueue(object : Callback<RandomUserResponse> {
-            override fun onFailure(call: Call<RandomUserResponse>, t: Throwable) {}
+        val userViewModel: UserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-            override fun onResponse(
-                call: Call<RandomUserResponse>,
-                response: Response<RandomUserResponse>
-            ) {
-                if (!response.isSuccessful) throw Throwable("error1")
 
-                val result: UserProfile = response.body()?.results?.firstOrNull() ?: UserProfile()
-                fullname.text = result.name?.first ?: "No First Name"
-                username.text = result.login?.username ?: "No User Name"
-                state.text = result.location?.state ?: "No State"
-                email.text = result.email
-                phone.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    PhoneNumberUtils.formatNumber(result.phone, Locale.US.isO3Country.toString())
-                } else result.phone // No format for old OS versions
-                country.text = result.location?.country ?: "No Country"
-                city.text = result.location?.city ?: "No City"
-                result.picture?.let { picture ->
-                    Glide.with(this@SecondFragment)
-                        .load(picture.large)
-                        .into(imageView)
-                }
-            }
-        })
+
+       userViewModel.usuario.observe(this, androidx.lifecycle.Observer { result ->
+           fullname.text = result.name?.first ?: "No First Name"
+           username.text = result.login?.username ?: "No User Name"
+           state.text = result.location?.state ?: "No State"
+           email.text = result.email
+           phone.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+               PhoneNumberUtils.formatNumber(result.phone, Locale.US.isO3Country.toString())
+           } else result.phone // No format for old OS versions
+           country.text = result.location?.country ?: "No Country"
+           city.text = result.location?.city ?: "No City"
+           result.picture?.let { picture ->
+               Glide.with(this@SecondFragment)
+                   .load(picture.large)
+                   .into(imageView)
+           }
+
+
+        }  )
+
+
+
+
+
+
+
+
     }
 
     override fun onCreateView(
@@ -71,3 +70,5 @@ class SecondFragment : Fragment() {
         }
     }
 }
+
+
