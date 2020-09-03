@@ -3,6 +3,7 @@ package com.example.appempty
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -35,16 +36,16 @@ class rvAdapter(  myDataset: ArrayList< UserProfile>, contexto:Context) :  Recyc
     }
 
     // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(parent: ViewGroup, position: Int): rvAdapter.UserViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, position: Int): UserViewHolder {
         // create a new view
         val ViewUser: View = LayoutInflater.from(contexto).inflate(R.layout.item_list,parent,false)  //esto no entiendo ni la mitad
-        val personaViewHolder = ViewHolder(ViewUser)
+        val personaViewHolder = UserViewHolder(ViewUser)
         ViewUser.tag = personaViewHolder
         return personaViewHolder
     }
 
 
-    override fun getCount(): Int {
+    override fun getItemCount(): Int {
         return this.usuarios!!.count()
     }
 
@@ -52,16 +53,12 @@ class rvAdapter(  myDataset: ArrayList< UserProfile>, contexto:Context) :  Recyc
     override fun onBindViewHolder(holder: rvAdapter.UserViewHolder, position: Int) {
         holder.nombre!!.text = usuarios!![position].name.toString()
 
-        usuarios!![position].picture.?let{ picture ->
-                Glide.with(this@item_list)
+        usuarios!![position].picture?.let{ picture ->
+                Glide.with(holder.itemView.context)
                     .load(picture.large)
-                    .into()
+                    .into(holder.itemView.first_avatar)
         }
     }
-
-
-
-
 
 }
 

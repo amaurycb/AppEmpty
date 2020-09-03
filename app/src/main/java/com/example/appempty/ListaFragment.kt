@@ -34,7 +34,7 @@ class ListaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        rvLista_usuarios.layoutManager = GridLayoutManager(applicationContext, 1)!!
+        rvLista_usuarios.layoutManager = GridLayoutManager(context, 1)!!
         rvLista_usuarios.setHasFixedSize(true)
 
 
