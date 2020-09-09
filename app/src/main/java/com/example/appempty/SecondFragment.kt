@@ -26,24 +26,25 @@ class SecondFragment : Fragment() {
 
 
 
-//       userViewModel.usuario.observe(this, androidx.lifecycle.Observer { result ->
-//           fullname.text = result.name?.first ?: "No First Name"
-//           username.text = result.login?.username ?: "No User Name"
-//           state.text = result.location?.state ?: "No State"
-//           email.text = result.email
-//           phone.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//               PhoneNumberUtils.formatNumber(result.phone, Locale.US.isO3Country.toString())
-//           } else result.phone // No format for old OS versions
-//           country.text = result.location?.country ?: "No Country"
-//           city.text = result.location?.city ?: "No City"
-//           result.picture?.let { picture ->
-//               Glide.with(this@SecondFragment)
-//                   .load(picture.large)
-//                   .into(imageView)
-//           }
-//
-//
-//        }  )
+       userViewModel.usuario.observe(this, androidx.lifecycle.Observer { result ->
+          fullname.text = result[0].name?.first ?: "No First Name"
+          username.text = result[0].login?.username ?: "No User Name"
+
+           state.text = result[0].location?.state ?: "No State"
+           email.text = result[0].email
+           phone.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+               PhoneNumberUtils.formatNumber(result[0].phone, Locale.US.isO3Country.toString())
+           } else result[0].phone // No format for old OS versions
+           country.text = result[0].location?.country ?: "No Country"
+           city.text = result[0].location?.city ?: "No City"
+           result[0].picture?.let { picture ->
+               Glide.with(this@SecondFragment)
+                   .load(picture.large)
+                   .into(imageView)
+           }
+
+
+        }  )
 
     }
 
