@@ -15,7 +15,7 @@
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
         android:layout_marginTop="1dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
         android:orientation="vertical"
         app:reverseLayout="false"
         app:layout_constraintStart_toStartOf="parent"

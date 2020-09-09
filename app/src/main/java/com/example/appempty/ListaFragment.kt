@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.appempty.ViewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_lista.*
 
@@ -38,6 +39,11 @@ class ListaFragment : Fragment() {
                     .navigate(R.id.action_listaFragment_to_SecondFragment)
             }
             rvLista_usuarios.adapter = itemAdapter
+            var manager = GridLayoutManager(activity,2)
+            rvLista_usuarios.layoutManager = manager
+
+            //  rvLista_usuarios.addItemDecoration(decor)
+
         })
 
     }
