@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import android.widget.TextView
-
+import androidx.navigation.fragment.NavHostFragment
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,11 +45,14 @@ class ListaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<TextView>(R.id.text1).setOnClickListener {
-            findNavController().navigate(R.id.action_listaFragment_to_SecondFragment)
+            if (resources.getBoolean(R.bool.isTablet)) {
+                val navHostFragment =
+                    childFragmentManager.findFragmentById(R.id.fragment2) as NavHostFragment
+                navHostFragment.navController.navigate(R.id.SecondFragment)
 
-
-
-
+            } else {
+                findNavController().navigate(R.id.action_listaFragment_to_SecondFragment)
+            }
         }
     }
 
