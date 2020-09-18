@@ -9,6 +9,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.appempty.ViewModel.UserListViewModel
 import com.example.appempty.ViewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_lista.*
 
