@@ -38,6 +38,7 @@ class ListaFragment : Fragment() {
             ) { userProfile ->
                 NavHostFragment.findNavController(this)
                     .navigate(R.id.action_listaFragment_to_SecondFragment)
+                
             }
             rvLista_usuarios.adapter = itemAdapter
             var manager = GridLayoutManager(activity,2)
