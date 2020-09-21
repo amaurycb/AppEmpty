@@ -23,7 +23,7 @@ class UserListViewModel  : ViewModel()  {
             .baseUrl("https://randomuser.me/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val userCall = retrofit.create(RandomUserService::class.java).getUserList(1)
+        val userCall = retrofit.create(RandomUserService::class.java).getUserList(10)
 
         userCall.enqueue(object : Callback<RandomUserResponse> {
             override fun onFailure(call: Call<RandomUserResponse>, t: Throwable) {}
@@ -34,7 +34,7 @@ class UserListViewModel  : ViewModel()  {
             ) {
                 if (!response.isSuccessful) throw Throwable("error1")
 
-                val result: UserProfile = response.body()?.results?.firstOrNull() ?: UserProfile()
+                val result: List<UserProfile>? = response.body()?.results
                 lista.value = MutableList(100) { result }
             }
         })
