@@ -14,11 +14,11 @@ import com.example.appempty.ViewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_lista.*
 
 class ListaFragment : Fragment() {
-    lateinit var userViewModel: UserViewModel
+    lateinit var userListViewModel: UserListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userListViewModel = ViewModelProvider(this).get(UserListViewModel::class.java)
 
     }
 
@@ -32,13 +32,13 @@ class ListaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userViewModel.usuario.observe(this@ListaFragment as LifecycleOwner, androidx.lifecycle.Observer {
+        userListViewModel.lista.observe(this@ListaFragment as LifecycleOwner, androidx.lifecycle.Observer {
             val itemAdapter = ItemAdapter(
                 myDataset = it ?: emptyList()
             ) { userProfile ->
                 NavHostFragment.findNavController(this)
                     .navigate(R.id.action_listaFragment_to_SecondFragment)
-                
+
             }
             rvLista_usuarios.adapter = itemAdapter
             var manager = GridLayoutManager(activity,2)
