@@ -16,6 +16,7 @@ class UserViewModel : ViewModel() {
 
 
         val usuario = MutableLiveData<List<UserProfile>>()
+  
     init {
         loadUser()
     }
