@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 #New
+/.idea/codeStyles/Project.xml
+/.idea/misc.xml
