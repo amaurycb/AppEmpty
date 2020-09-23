@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 //import com.example.appempty.ViewModel.UserListViewModel
 import com.example.appempty.ViewModel.UserViewModel
@@ -36,10 +37,7 @@ class ListaFragment : Fragment() {
             val itemAdapter = ItemAdapter(
                 myDataset = it ?: emptyList()
             ) { if (!resources.getBoolean(R.bool.isTablet)){
-                    userProfile ->
-                NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_listaFragment_to_SecondFragment)
-
+                findNavController().navigate(R.id.action_listaFragment_to_SecondFragment)
                  }
             }
             rvLista_usuarios.adapter = itemAdapter
