@@ -9,16 +9,16 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.appempty.ViewModel.UserListViewModel
+//import com.example.appempty.ViewModel.UserListViewModel
 import com.example.appempty.ViewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_lista.*
 
 class ListaFragment : Fragment() {
-    lateinit var userListViewModel: UserListViewModel
+    lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userListViewModel = ViewModelProvider(this).get(UserListViewModel::class.java)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
     }
 
@@ -32,13 +32,15 @@ class ListaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userListViewModel.lista.observe(this@ListaFragment as LifecycleOwner, androidx.lifecycle.Observer {
+        userViewModel.usuario.observe(this@ListaFragment as LifecycleOwner, androidx.lifecycle.Observer {
             val itemAdapter = ItemAdapter(
                 myDataset = it ?: emptyList()
-            ) { userProfile ->
+            ) { if (!resources.getBoolean(R.bool.isTablet)){
+                    userProfile ->
                 NavHostFragment.findNavController(this)
                     .navigate(R.id.action_listaFragment_to_SecondFragment)
 
+                 }
             }
             rvLista_usuarios.adapter = itemAdapter
             var manager = GridLayoutManager(activity,2)

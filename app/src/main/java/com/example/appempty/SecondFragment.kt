@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.appempty.ViewModel.UserViewModel
@@ -61,7 +62,14 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         fullname.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_listaFragment)
+
+            if (resources.getBoolean(R.bool.isTablet)) {
+                val navHostFragment = childFragmentManager.findFragmentById(R.id.fragment2) as NavHostFragment
+                navHostFragment.navController.navigate(R.id.SecondFragment)
+
+            } else {
+                findNavController().navigate(R.id.action_SecondFragment_to_listaFragment)
+            }
         }
     }
 }
