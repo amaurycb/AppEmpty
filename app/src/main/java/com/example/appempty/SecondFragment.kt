@@ -61,15 +61,9 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fullname.setOnClickListener {
+        fullname.setOnClickListener {findNavController().navigate(R.id.action_SecondFragment_to_listaFragment)
 
-            if (resources.getBoolean(R.bool.isTablet)) {
-                val navHostFragment = childFragmentManager.findFragmentById(R.id.fragment2) as NavHostFragment
-                navHostFragment.navController.navigate(R.id.SecondFragment)
 
-            } else {
-                findNavController().navigate(R.id.action_SecondFragment_to_listaFragment)
-            }
         }
     }
 }
