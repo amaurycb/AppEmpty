@@ -7,11 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.appempty.ViewModel.UserViewModel
@@ -27,8 +23,7 @@ class SecondFragment : Fragment() {
 
 
 
-       userViewModel.usuario.observe(this, androidx.lifecycle.Observer { result ->
-         var resultado = result.first()
+       userViewModel.selectedUser.observe(this, androidx.lifecycle.Observer { resultado ->
           fullname.text = resultado.name?.first ?: "No First Name"
           username.text = resultado.login?.username ?: "No User Name"
 
