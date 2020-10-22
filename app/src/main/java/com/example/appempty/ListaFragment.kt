@@ -32,21 +32,30 @@ class ListaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userViewModel.usuario.observe(this@ListaFragment as LifecycleOwner, androidx.lifecycle.Observer {
-             val itemAdapter = ItemAdapter( myDataset = it ?: emptyList()) {
-                if (resources.getBoolean(R.bool.isTablet)) {
-                    val navHostFragment =  childFragmentManager.findFragmentById(R.id.fragment2) as NavHostFragment
-                    navHostFragment.navController.navigate(R.id.SecondFragment)
-                }
-                else {
-                 findNavController().navigate(R.id.action_listaFragment_to_SecondFragment)
-                 }
-            }
+        userViewModel.listUsers.observe(this@ListaFragment as LifecycleOwner, androidx.lifecycle.Observer { listUsers ->
+
+            val itemAdapter = ItemAdapter(
+                listUsers = listUsers ?: emptyList(),
+                onUserSelectedCLick = this::onUserSelectedClick
+            )
+
+
             rvLista_usuarios.adapter = itemAdapter
             var manager = GridLayoutManager(activity,2)
             rvLista_usuarios.layoutManager = manager
 
         })
 
+    }
+
+    private fun onUserSelectedClick(userSelected: UserProfile) {
+        userViewModel.onUserSelectedClick(userSelected)
+        if (resources.getBoolean(R.bool.isTablet)) {
+            val navHostFragment =
+                childFragmentManager.findFragmentById(R.id.fragment2) as NavHostFragment
+            navHostFragment.navController.navigate(R.id.SecondFragment)
+        } else {
+            findNavController().navigate(R.id.action_listaFragment_to_SecondFragment)
+        }
     }
 }
