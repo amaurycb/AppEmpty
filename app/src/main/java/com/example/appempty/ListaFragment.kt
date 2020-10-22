@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+
 import com.example.appempty.ViewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_lista.*
 
@@ -18,7 +19,7 @@ class ListaFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
     }
 
@@ -32,30 +33,25 @@ class ListaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userViewModel.listUsers.observe(this@ListaFragment as LifecycleOwner, androidx.lifecycle.Observer { listUsers ->
-
+        userViewModel.usuario.observe(this@ListaFragment as LifecycleOwner, androidx.lifecycle.Observer {
             val itemAdapter = ItemAdapter(
-                listUsers = listUsers ?: emptyList(),
-                onUserSelectedCLick = this::onUserSelectedClick
-            )
+                myDataset = it ?: emptyList()
+            ) {             if (resources.getBoolean(R.bool.isTablet)) {
+                val navHostFragment =
+                    childFragmentManager.findFragmentById(R.id.fragment2) as NavHostFragment
+                navHostFragment.navController.navigate(R.id.SecondFragment)
 
-
+            } else {
+                findNavController().navigate(R.id.action_listaFragment_to_SecondFragment)
+            }
+            }
             rvLista_usuarios.adapter = itemAdapter
             var manager = GridLayoutManager(activity,2)
             rvLista_usuarios.layoutManager = manager
 
+
+
         })
 
-    }
-
-    private fun onUserSelectedClick(userSelected: UserProfile) {
-        userViewModel.onUserSelectedClick(userSelected)
-        if (resources.getBoolean(R.bool.isTablet)) {
-            val navHostFragment =
-                childFragmentManager.findFragmentById(R.id.fragment2) as NavHostFragment
-            navHostFragment.navController.navigate(R.id.SecondFragment)
-        } else {
-            findNavController().navigate(R.id.action_listaFragment_to_SecondFragment)
-        }
     }
 }

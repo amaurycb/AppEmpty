@@ -8,8 +8,8 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_list.view.*
 
 class ItemAdapter(
-    private val listUsers: List<UserProfile>,
-    private val onUserSelectedCLick: (UserProfile) -> Unit
+    private val myDataset: List<UserProfile>,
+    private val onCLick: (UserProfile) -> Unit
 ) :
     RecyclerView.Adapter<ItemAdapter.UserViewHolder>() {
 
@@ -31,10 +31,10 @@ class ItemAdapter(
         return UserViewHolder(holder)
     }
 
-    override fun getItemCount(): Int = listUsers.size
+    override fun getItemCount(): Int = myDataset.size
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.bind(listUsers[position], onUserSelectedCLick)
+        holder.bind(myDataset[position], onCLick)
     }
 
 }
