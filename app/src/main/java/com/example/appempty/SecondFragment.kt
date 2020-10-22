@@ -23,18 +23,18 @@ class SecondFragment : Fragment() {
 
 
 
-       userViewModel.selectedUser.observe(this, androidx.lifecycle.Observer { resultado ->
-          fullname.text = resultado.name?.first ?: "No First Name"
-          username.text = resultado.login?.username ?: "No User Name"
+       userViewModel.selectedUser.observe(this, androidx.lifecycle.Observer { result ->
+          fullname.text = result.name?.first ?: "No First Name"
+          username.text = result.login?.username ?: "No User Name"
 
-           state.text = resultado.location?.state ?: "No State"
-           email.text = resultado.email
+           state.text = result.location?.state ?: "No State"
+           email.text = result.email
            phone.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-               PhoneNumberUtils.formatNumber(resultado.phone, Locale.US.isO3Country.toString())
-           } else resultado.phone // No format for old OS versions
-           country.text = resultado.location?.country ?: "No Country"
-           city.text = resultado.location?.city ?: "No City"
-           resultado.picture?.let { picture ->
+               PhoneNumberUtils.formatNumber(result.phone, Locale.US.isO3Country.toString())
+           } else result.phone // No format for old OS versions
+           country.text = result.location?.country ?: "No Country"
+           city.text = result.location?.city ?: "No City"
+           result.picture?.let { picture ->
                Glide.with(this@SecondFragment)
                    .load(picture.large)
                    .into(imageView)
