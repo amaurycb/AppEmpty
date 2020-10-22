@@ -7,7 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.appempty.ViewModel.UserViewModel
@@ -23,18 +27,19 @@ class SecondFragment : Fragment() {
 
 
 
-       userViewModel.selectedUser.observe(this, androidx.lifecycle.Observer { result ->
-          fullname.text = result.name?.first ?: "No First Name"
-          username.text = result.login?.username ?: "No User Name"
+       userViewModel.usuario.observe(this, androidx.lifecycle.Observer { result ->
+         var resultado = result.first()
+          fullname.text = resultado.name?.first ?: "No First Name"
+          username.text = resultado.login?.username ?: "No User Name"
 
-           state.text = result.location?.state ?: "No State"
-           email.text = result.email
+           state.text = resultado.location?.state ?: "No State"
+           email.text = resultado.email
            phone.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-               PhoneNumberUtils.formatNumber(result.phone, Locale.US.isO3Country.toString())
-           } else result.phone // No format for old OS versions
-           country.text = result.location?.country ?: "No Country"
-           city.text = result.location?.city ?: "No City"
-           result.picture?.let { picture ->
+               PhoneNumberUtils.formatNumber(resultado.phone, Locale.US.isO3Country.toString())
+           } else resultado.phone // No format for old OS versions
+           country.text = resultado.location?.country ?: "No Country"
+           city.text = resultado.location?.city ?: "No City"
+           resultado.picture?.let { picture ->
                Glide.with(this@SecondFragment)
                    .load(picture.large)
                    .into(imageView)

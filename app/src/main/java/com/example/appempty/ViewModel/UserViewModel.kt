@@ -2,6 +2,7 @@ package com.example.appempty.ViewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.load.engine.Resource
 import com.example.appempty.RandomUserResponse
 import com.example.appempty.RandomUserService
 import com.example.appempty.UserProfile
@@ -12,9 +13,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class UserViewModel : ViewModel() {
-    val listUsers = MutableLiveData<List<UserProfile>>()
-    val selectedUser = MutableLiveData<UserProfile>()
 
+
+        val usuario = MutableLiveData<List<UserProfile>>()
+  
     init {
         loadUser()
     }
@@ -37,12 +39,8 @@ class UserViewModel : ViewModel() {
                 if (!response.isSuccessful) throw Throwable("error1")
 
                 val result: UserProfile = response.body()?.results?.firstOrNull() ?: UserProfile()
-                listUsers.value = MutableList(100) { result }
+                usuario.value = MutableList(100) { result }
             }
         })
-    }
-
-    fun onUserSelectedClick(userSelected: UserProfile) {
-        selectedUser.postValue(userSelected)
     }
 }
