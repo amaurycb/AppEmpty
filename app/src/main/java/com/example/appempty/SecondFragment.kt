@@ -19,7 +19,7 @@ class SecondFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val userViewModel: UserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        val userViewModel: UserViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
 
 
 
