@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 
 
 data class RandomUserResponse(
-    @SerializedName("info")
-    val info: IDNA.Info,
+//    @SerializedName("info")
+//    val info: IDNA.Info,
     @SerializedName("results")
     val results: List<UserProfile>
 )
@@ -20,9 +20,9 @@ data class Coordinates(
 
 data class Info(
     @SerializedName("page")
-    val page: Int,
+    val page: String,
     @SerializedName("results")
-    val results: Int,
+    val results: String,
     @SerializedName("seed")
     val seed: String,
     @SerializedName("version")
@@ -32,18 +32,18 @@ data class Info(
 data class Location(
     @SerializedName("city")
     val city: String,
-    @SerializedName("coordinates")
-    val coordinates: Coordinates,
+//    @SerializedName("coordinates")
+//    val coordinates: Coordinates,
     @SerializedName("country")
     val country: String,
-    @SerializedName("postcode")
-    val postcode: Int,
+//    @SerializedName("postcode")
+//    val postcode: Int,
     @SerializedName("state")
-    val state: String,
-    @SerializedName("street")
-    val street: Street,
-    @SerializedName("timezone")
-    val timezone: Timezone
+    val state: String
+//    @SerializedName("street")
+//    val street: Street,
+//    @SerializedName("timezone")
+//    val timezone: Timezone
 )
 
 data class Login(
@@ -101,7 +101,7 @@ data class Street(
     @SerializedName("name")
     val name: String,
     @SerializedName("number")
-    val number: Int
+    val number: String
 )
 
 data class Timezone(
