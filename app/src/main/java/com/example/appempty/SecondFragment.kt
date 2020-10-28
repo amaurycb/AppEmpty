@@ -56,8 +56,10 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fullname.setOnClickListener {findNavController().navigate(R.id.action_SecondFragment_to_listaFragment)
-
+        if (!resources.getBoolean(R.bool.isTablet)) {
+        fullname.setOnClickListener {
+            findNavController().navigate(R.id.action_SecondFragment_to_listaFragment)
+        }
 
         }
     }
