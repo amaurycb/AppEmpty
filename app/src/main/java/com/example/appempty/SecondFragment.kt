@@ -20,9 +20,7 @@ class SecondFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (resources.getBoolean(R.bool.isTablet)) {
-            findNavController().navigate(R.id.action_listaFragment_to_SecondFragment)
-        }
+
 
         val userViewModel: UserViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
 
@@ -61,11 +59,17 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (resources.getBoolean(R.bool.isTablet)) {
+            findNavController().popBackStack()
+
+        }
+
         if (!resources.getBoolean(R.bool.isTablet)) {
             fullname.setOnClickListener {
                 findNavController().navigate(R.id.action_SecondFragment_to_listaFragment)
             }
         }
+
     }
 }
 
