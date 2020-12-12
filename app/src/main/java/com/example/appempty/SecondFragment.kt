@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.appempty.ViewModel.UserViewModel
@@ -18,6 +19,8 @@ class SecondFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
 
         val userViewModel: UserViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
 
@@ -56,12 +59,17 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (!resources.getBoolean(R.bool.isTablet)) {
-        fullname.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_listaFragment)
-        }
+        if (resources.getBoolean(R.bool.isTablet)) {
+            findNavController().popBackStack()
 
         }
+
+        if (!resources.getBoolean(R.bool.isTablet)) {
+            fullname.setOnClickListener {
+                findNavController().navigate(R.id.action_SecondFragment_to_listaFragment)
+            }
+        }
+
     }
 }
 
